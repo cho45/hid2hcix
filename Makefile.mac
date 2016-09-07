@@ -1,28 +1,30 @@
 
+BUILDDIR=.build/mac
+
 PREFIX=
 CC=$(PREFIX)gcc
 CXX=$(PREFIX)g++
-COBJS=./hidapi/mac/hid.o
-CPPOBJS=./hid2hcix.o
+COBJS=$(BUILDDIR)/hidapi/mac/hid.o
+CPPOBJS=$(BUILDDIR)/hid2hcix.o
 OBJS=$(COBJS) $(CPPOBJS)
 CFLAGS=-Ihidapi/hidapi -g -c
 LIBS= -framework IOKit -framework CoreFoundation
 
 .PHONY: all clean
 
-all: hid2hcix
+all: $(BUILDDIR)/hid2hcix
 
 clean:
-	rm -f $(COBJS)
-	rm -f $(CPPOBJS)
-	rm -f hid2hcix
+	rm -rf $(BUILDDIR)
 
-hid2hcix: $(OBJS)
-	$(CXX) -g $^ $(LIBS) -o hid2hcix
+$(BUILDDIR)/hid2hcix: $(OBJS)
+	$(CXX) -g $^ $(LIBS) -o $(BUILDDIR)/hid2hcix
 
-$(COBJS): %.o: %.c
+$(COBJS): $(BUILDDIR)/%.o: %.c
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $< -o $@
 
-$(CPPOBJS): %.o: %.cpp
+$(CPPOBJS): $(BUILDDIR)/%.o: %.cpp
+	mkdir -p $(dir $@)
 	$(CXX) $(CFLAGS) $< -o $@
 
