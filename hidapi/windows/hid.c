@@ -221,7 +221,8 @@ static int lookup_functions()
 static HANDLE open_device(const char *path, BOOL enumerate)
 {
 	HANDLE handle;
-	DWORD desired_access = (enumerate)? 0: (GENERIC_WRITE | GENERIC_READ);
+	// XXX: HID keyboard must be 0 for Windows...
+	DWORD desired_access = 0; //  (enumerate)? 0: (GENERIC_WRITE | GENERIC_READ);
 	DWORD share_mode = FILE_SHARE_READ|FILE_SHARE_WRITE;
 
 	handle = CreateFileA(path,
