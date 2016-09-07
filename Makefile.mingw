@@ -1,0 +1,30 @@
+
+# PATH="/usr/local/gcc-4.8.0-qt-4.8.4-for-mingw32/win32-gcc/bin:$PATH" make -f Makefile.mingw
+
+PREFIX=i586-mingw32-
+CC=$(PREFIX)gcc
+CXX=$(PREFIX)g++
+COBJS=./hidapi/windows/hid.o
+CPPOBJS=./hid2hcix.o
+OBJS=$(COBJS) $(CPPOBJS)
+CFLAGS=-Ihidapi/hidapi -g -c
+LIBS= -lsetupapi
+
+.PHONY: all clean
+
+all: hid2hcix.exe
+
+clean:
+	rm -f $(COBJS)
+	rm -f $(CPPOBJS)
+	rm -f hid2hcix.exe
+
+hid2hcix.exe: $(OBJS)
+	$(CXX) -g $^ $(LIBS) -o hid2hcix.exe
+
+$(COBJS): %.o: %.c
+	$(CC) $(CFLAGS) $< -o $@
+
+$(CPPOBJS): %.o: %.cpp
+	$(CXX) $(CFLAGS) $< -o $@
+
