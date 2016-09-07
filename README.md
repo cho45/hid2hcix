@@ -3,6 +3,13 @@ hid2hcix
 
 Switch CSR Bluetooth Dongle to HCI mode.
 
+# Build
+
+Build on OS X with mingw:
+
+```
+PATH="/usr/local/gcc-4.8.0-qt-4.8.4-for-mingw32/win32-gcc/bin:$PATH" make -f Makefile.mingw
+```
 
 # hidapi
 
