@@ -1,15 +1,10 @@
 
 
-.PHONY: all mac win clean
+.PHONY: all clean
 
-mac:
+all:
 	make -f ./Makefile.mac
-
-win:
 	make -f ./Makefile.mingw
-
-all: mac win
-
 
 clean:
 	make -f ./Makefile.mac clean

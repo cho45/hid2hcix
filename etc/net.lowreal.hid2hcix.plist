@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<!-- copy this to /System/Library/LaunchDaemons -->
+	<dict>
+		<key>Label</key>
+		<string>net.lowreal.net.hid2hcix</string>
+		<key>ProgramArguments</key>
+		<array>
+			<string>/usr/local/bin/hid2hcix</string>
+		</array>
+		<key>KeepAlive</key>
+		<false/>
+		<key>UserName</key>
+		<string>root</string>
+		<key>RunAtLoad</key>
+		<true/>
+		<key>LaunchOnlyOnce</key>
+		<true/>
+	</dict>
+</plist>
